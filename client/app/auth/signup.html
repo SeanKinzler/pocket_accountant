@@ -1,8 +1,11 @@
 <div ng-controller="authController">
 	<form>
-		<input ng-model="username" type="text">
-		<input ng-model="password" type="password">
-		<submit ng-click="submit">
+		<input ng-model="user.username" type="text">
+		<input ng-model="user.password" type="password">
+		<submit ng-click="submit()">
 
 	</form>
+
+	<hr>
+	<pre>{{ user.username }}  {{ user.password }}</pre>
 </div>
