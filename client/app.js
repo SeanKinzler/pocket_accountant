@@ -1,8 +1,12 @@
-angular.module('pocketacct', ['ngRoute'])
+angular.module('pocketacct', [
+	'pocketacct.auth', 
+	'pocketacct.services',
+	'ngRoute'
+	])
 	.config(function ($routeProvider, $httpProvider) {
   $routeProvider
     .when('/signup', {
-      templateUrl: 'app/auth/signin.html',
+      templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     })
   })

@@ -1,4 +1,4 @@
-angular.module('services', [])
+angular.module('pocketacct.services', [])
 	.factory('Users', function($http) {
 		var addUser = function(user) {
 			$http({
@@ -8,7 +8,7 @@ angular.module('services', [])
 			})
 		}
 
-		var getUser = funciton(username) {
+		var getUser = function(username) {
 			$http({
 				method: GET,
 				url: '/api/users'
