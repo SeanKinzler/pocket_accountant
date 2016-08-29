@@ -26,9 +26,10 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directories
-node_modules
-jspm_packages
+# Files that might appear on external disk
+node_modules/
+db/
+client/lib
 
 # Optional npm cache directory
 .npm
