@@ -1,17 +1,18 @@
 angular.module('pocketacct.services', [])
 	.factory('Users', function($http) {
 		var addUser = function(user) {
-			$http({
-				method: POST,
-				url: '/api/users',
+			return $http({
+				method: 'POST',
+				url: '/api/addUser',
 				data: user
 			})
 		}
 
-		var getUser = function(username) {
+		var signIn = function(user) {
 			$http({
-				method: GET,
-				url: '/api/users'
+				method: 'POST',
+				url: '/api/login',
+				data: user
 			}).then()
 		}
 		return {
@@ -19,3 +20,6 @@ angular.module('pocketacct.services', [])
 			getUser: getUser
 		};
 	})
+	// .factory('Session', function($http) {
+		
+	// })

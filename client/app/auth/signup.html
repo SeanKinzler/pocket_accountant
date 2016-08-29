@@ -2,10 +2,10 @@
 	<form>
 		<input ng-model="user.username" type="text">
 		<input ng-model="user.password" type="password">
-		<submit ng-click="submit()">
+		<button ng-click="submit()">Submit</button>
 
 	</form>
 
 	<hr>
-	<pre>{{ user.username }}  {{ user.password }}</pre>
+	<pre>Username: {{ user.username }}  Password: {{ user.password }}</pre>
 </div>
