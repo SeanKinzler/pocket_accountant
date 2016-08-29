@@ -1,0 +1,28 @@
+{
+  "name": "pocket_accountant",
+  "version": "1.0.0",
+  "description": "A simple app that tracks your finances.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeanKinzler/pocket_accountant.git"
+  },
+  "author": "Sean Kinzler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SeanKinzler/pocket_accountant/issues"
+  },
+  "homepage": "https://github.com/SeanKinzler/pocket_accountant#readme",
+  "devDependencies": {
+    "nodemon": "^1.10.2"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongo": "^0.1.0",
+    "mongoose": "^4.5.10",
+    "underscore": "^1.8.3"
+  }
+}
