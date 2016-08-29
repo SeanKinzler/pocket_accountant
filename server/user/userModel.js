@@ -13,7 +13,7 @@ userSchema.methods.updateBalance = function() {
 	this.acctBalance = this.credits - this.debits;
 };
 
-
-var User = mongoose.Model('User', userSchema);
+// console.log(userSchema);
+var User = mongoose.model('user', userSchema);
 
 module.exports = User;
