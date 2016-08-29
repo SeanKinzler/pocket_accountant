@@ -1,7 +1,6 @@
 {
   "name": "pocket_accountant",
   "description": "A simple app that tracks your finances.",
-  "main": "index.js",
   "authors": [
     "Sean Kinzler"
   ],

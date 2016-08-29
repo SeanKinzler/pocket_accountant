@@ -1,8 +1,15 @@
-<html>
+<html ng-app='pocketacct'>
 	<head>
+		<meta charset="utf-8" />
 		<title>Pocket Accountant</title>
 	</head>
 	<body>
-	<h2>Pocket Accountant</h2>
+		<script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+
+		<h2>Pocket Accountant</h2>
+		<div ng-view>
+		</div>
+
 	</body>
 </html>
