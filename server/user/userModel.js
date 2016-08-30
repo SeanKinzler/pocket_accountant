@@ -3,10 +3,10 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
 	username: {type: String, required: true, unique: true},
-	password: {type: String, required: true}
+	password: {type: String, required: true},
 	// acctBalance: Number,
-	// credits: Number,
-	// debits: Number
+	credits: [{type: mongoose.Schema.Types.ObjectId, ref: 'credit'}],
+	debits: [{type: mongoose.Schema.Types.ObjectId, ref: 'debit'}]
 })
 
 // userSchema.methods.updateBalance = function() {

@@ -3,6 +3,8 @@
 //func get current user data
 //
 var User = require('./userModel.js');
+var Credit = require('./../payments/creditModel.js')
+var Dedit = require('./../payments/debitModel.js')
 module.exports = {
 	login: function(req, res, next) {
 		console.log('req: ', req.body.username);
@@ -15,7 +17,11 @@ module.exports = {
 				res.sendStatus(500);
 			} else {
 				console.log(data);
-				res.json(data[0].username);
+				if (data.length > 0){
+					res.json(data[0].username);
+				} else {
+					res.sendStatus(301);
+				}
 			}
 			next();
 		});
@@ -30,5 +36,26 @@ module.exports = {
 			res.sendStatus(201);
 			next();
 		});
+	},
+
+	getCredits: function(req, res, next) {
+		var user = User.find({
+			username: req.body.username
+		}).exec().then(function(data, err) {
+			res.json(data[0]);
+		})
+	},
+
+	addCredit: function(req, res, next) {
+		var user = User.find({
+			username: req.body.username
+		}).exec().then(function(data, err) {
+			Credit.create({
+				ammount: req.body.ammount,
+				_owner: user._id
+			}).save().then(function(data, err){
+				res.sendStatus(201);
+			})
+		})
 	}
 }
