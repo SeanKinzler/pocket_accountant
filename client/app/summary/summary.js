@@ -64,6 +64,10 @@ angular.module('pocketacct.summary', [])
 			$location.path('/allDebits');
 		}
 
+		$scope.viewSummary = function() {
+			$location.path('/summary');
+		}
+
 		initVals();
 		$scope.isAuth = Users.isAuth();
 	})

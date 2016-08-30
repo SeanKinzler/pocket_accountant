@@ -1,8 +1,27 @@
 <div ng-controller="CreditController">
+	<nav>
+		<span ng-click=viewCreds()>
+			View Incoming Payments
+		</span>
+		 | 
+		<span ng-click=viewDebs()>
+			View Outgoing Payments
+		</span>
+		 | 
+		<span ng-click=viewSummary()>
+			View Account Summary
+		</span>
+		|
+		<span class=logout ng-click=logout()>
+			Logout
+		</span>
+
+	</nav>
+	<br>
 	<table>
 		<tr ng-repeat="cred in allCredits">
 			<td>
-				title{{ cred.title }}
+				{{ cred.title }}
 			</td>
 			<td>
 				${{ cred.ammount }}
@@ -20,17 +39,14 @@
 	<br>
 	<div class="addCredits">
 		<form>
-			Payment Type: <input type="text" ng-model="creditAmmount">
+			Payment Type: <input type="text" ng-model="creditTitle">
 			<br>
 			<br>
-			Payment Ammount: <input type="text" ng-model="creditTitle">
+			Payment Ammount: <input type="text" ng-model="creditAmmount">
 			<button type="submit" ng-click="addCredit()">
-				Add Credit
+				Add Account Credit
 			</button>
 		</form>
-		<button ng-click="getCredits()">
-			Get Credits
-		</button>
 	</div>
 
 </div>

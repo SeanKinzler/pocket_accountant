@@ -57,11 +57,12 @@ angular.module('pocketacct.services', [])
 			})
 		}
 
-		var addCredit = function(user, ammount) {
+		var addCredit = function(user, ammount, title) {
+			console.log('services: ', title);
 			return $http({
 				method: 'POST',
 				url: 'api/addcredit',
-				data: {username: user.username, ammount: ammount}
+				data: {username: user.username, ammount: ammount, title: title}
 			}).then(function(data, err) {
 			})
 		}
@@ -96,7 +97,6 @@ angular.module('pocketacct.services', [])
 		}
 
 		return {
-				// balance: balance,
 				totalCredits: totalCredits,
 				totalDebits: totalDebits,
 				getCredits: getCredits,
