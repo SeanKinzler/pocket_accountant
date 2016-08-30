@@ -18,9 +18,8 @@ angular.module('pocketacct.services', [])
 				url: '/api/login',
 				data: user
 			}).then(function(data, err) {
-				console.log(data);
-				console.log('data saved to session: ', data.username);
-				$window.localStorage.setItem('pocketacct.username', data.username)
+				console.log('data saved to session: ', data.data);
+				$window.localStorage.setItem('pocketacct.username', data.data)
 			})
 		}
 		return {

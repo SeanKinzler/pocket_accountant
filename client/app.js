@@ -15,6 +15,10 @@ angular.module('pocketacct', [
     })
     .when('/viewBalance', {
     	templateUrl: 'app/auth/login.html',
-      controller: 'AuthController'
+      controller: 'AuthController',
+      authenticate: true;
     })
+    .otherwise({
+      redirectTo: '/viewBalance'
+    });
   })
