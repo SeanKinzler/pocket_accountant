@@ -1,28 +1,40 @@
 angular.module('pocketacct.services', [])
-	.factory('Users', function($http, $cookieStore) {
+	.factory('Users', function($http, $window) {
 		var addUser = function(user) {
 			return $http({
 				method: 'POST',
 				url: '/api/addUser',
 				data: user
+			}).then(function() {
+				$window.localStorage.setItem('pocketacct.username', user.username);
+				
 			})
-			$cookeStore.push('username', user.username);
+			
 		}
 
-		var signIn = function(user) {
+		var login = function(user) {
 			$http({
 				method: 'POST',
 				url: '/api/login',
 				data: user
 			}).then(function(err, data) {
-				$cookieStore.put('username', user.username)
+				$window.localStorage.setItem('pocketacct.username', user.username)
 			})
 		}
 		return {
 			addUser: addUser,
-			signIn: signIn
+			login: login
 		};
+
+		var isAuth = function() {
+			return !!$window.localStorage.getItem('pocketacct.username');
+		}
 	})
-	.factory('currentUser', function($cookieStore) {
-		var login
-	})
+	.run(function ($rootScope, $location, Users) {
+  $rootScope.$on('$routeChangeStart', function (evt, next, current) {
+    if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
+      $location.path('/login');
+    }
+  });
+
+  //taken from sprint as a quick fix for login feature

@@ -9,4 +9,12 @@ angular.module('pocketacct', [
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     })
+    .when('/login', {
+    	templateUrl: 'app/auth/login.html',
+      controller: 'AuthController'
+    })
+    .when('/viewBalance', {
+    	templateUrl: 'app/auth/login.html',
+      controller: 'AuthController'
+    })
   })
