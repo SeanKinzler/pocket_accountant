@@ -7,18 +7,20 @@ angular.module('pocketacct.services', [])
 				data: user
 			}).then(function() {
 				$window.localStorage.setItem('pocketacct.username', user.username);
-				
+
 			})
 			
 		}
 
 		var login = function(user) {
-			$http({
+			return $http({
 				method: 'POST',
 				url: '/api/login',
 				data: user
-			}).then(function(err, data) {
-				$window.localStorage.setItem('pocketacct.username', user.username)
+			}).then(function(data, err) {
+				console.log(data);
+				console.log('data saved to session: ', data.username);
+				$window.localStorage.setItem('pocketacct.username', data.username)
 			})
 		}
 		return {
@@ -35,6 +37,7 @@ angular.module('pocketacct.services', [])
     if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
       $location.path('/login');
     }
-  });
+  })
+});
 
   //taken from sprint as a quick fix for login feature

@@ -5,9 +5,8 @@ angular.module('pocketacct.auth' , [])
 			Users.addUser({
 				username: $scope.user.username,
 				password: $scope.user.password
-			}).then(function(err, data){
+			}).then(function(data, err){
 				//check err/data order
-				console.log('data');
 			});
 			$scope.username = '';
 			$scope.password = '';
@@ -17,9 +16,8 @@ angular.module('pocketacct.auth' , [])
 			Users.login({
 				username: $scope.user.username,
 				password: $scope.user.password
-			}).then(function(err, data){
+			}).then(function(data, err){
 				//check err/data order
-				console.log('data');
 			});
 			$scope.username = '';
 			$scope.password = '';
