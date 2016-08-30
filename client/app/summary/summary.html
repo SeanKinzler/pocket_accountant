@@ -1,49 +1,59 @@
 <div ng-controller="SummaryController">
+<nav>
+	<span ng-click=viewCreds()>
+		View Incoming Payments
+	</span>
+	 | 
+	<span ng-click=viewDebs()>
+		View Outgoing Payments
+	</span>
+	 | 
+	<span class=logout ng-click=logout()>
+		Logout
+	</span>
 
-<button class=logout ng-click=logout()>Logout</button>
-<br>
-<table>
-	<tr>
-		<td>
-			Money in: {{ totalCredits }}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Money out: {{ totalDebits }}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Current Balance: {{ balance }}
-		</td>
-	</tr>
-</table>
-<div class="credits">
-	<form>
-		<input type="text" ng-model="creditAmmount">
-		<button type="submit" ng-click="addCredit()">
-			Add Credit
+</nav>
+
+	<br>
+	<table>
+		<tr>
+			<td>
+				Money in: ${{ totalCredits }}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Money out: ${{ totalDebits }}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Current Balance: ${{ balance }}
+			</td>
+		</tr>
+	</table>
+	<br>
+	<div class="credits">
+		<form>
+			<input type="text" ng-model="creditAmmount">
+			<button type="submit" ng-click="addCredit()">
+				Add Credit
+			</button>
+		</form>
+		<button ng-click="getCredits()">
+			Get Credits
 		</button>
-	</form>
-	<button ng-click="getCredits()">
-		Get Credits
-	</button>
-</div>
-<br>
-<div class="debits">
-	<form>
-		<input type="text" ng-model="debitAmmount">
-		<button type="submit" ng-click="addDebit()">
-			Add Debit
+	</div>
+	<br>
+	<div class="debits">
+		<form>
+			<input type="text" ng-model="debitAmmount">
+			<button type="submit" ng-click="addDebit()">
+				Add Debit
+			</button>
+		</form>
+		<button ng-click="getDebits()">
+			Get Debits
 		</button>
-	</form>
-	<button ng-click="getDebits()">
-		Get Debits
-	</button>
-</div>
-
-
-Credits: {{ credits }}
-
+	</div>
 </div>

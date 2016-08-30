@@ -53,7 +53,6 @@ angular.module('pocketacct.services', [])
 				url: 'api/getdebits',
 				data: user
 			}).then(function(data, err) {
-				console.log('factory: ', data.data)
 				return data.data
 			})
 		}

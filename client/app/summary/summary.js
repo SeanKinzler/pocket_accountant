@@ -1,21 +1,28 @@
 angular.module('pocketacct.summary', [])
-	.controller('SummaryController', function($scope, $window, $location, Users, Summary) {
-		$scope.hello = 'Hello Summary World!';
+	.controller('SummaryController', function($scope, $window, 
+		$location, Users, Summary) {
 
-		Summary.totalDebits({
+		var initVals = function() {
+			$scope.debitAmmount = '';
+			$scope.creditAmmount = '';
+
+			Summary.totalCredits({
 				username: $window.localStorage.getItem('pocketacct.username')
-			}).then(function(data, err) {
-				$scope.totalDebits = '$' + data;
-			});
+			})
+			.then(function(data, err) {
+				$scope.totalCredits = data;
+				Summary.totalDebits({
+					username: $window.localStorage.getItem('pocketacct.username')
+				})
+				.then(function(data, err) {
+					$scope.totalDebits = data;
+				})
+				.then(function(data, err) {
+					$scope.balance = $scope.totalCredits - $scope.totalDebits;
+				})
+			})
+		};
 
-		Summary.totalCredits({
-				username: $window.localStorage.getItem('pocketacct.username')
-			}).then(function(data, err) {
-				$scope.totalCredits = '$' + data;
-			});
-
-		$scope.balance = '$0';
-		
 		$scope.getCredits = function () {
 			Summary.getCredits({
 				username: $window.localStorage.getItem('pocketacct.username')
@@ -28,7 +35,6 @@ angular.module('pocketacct.summary', [])
 			Summary.getDebits({
 				username: $window.localStorage.getItem('pocketacct.username')
 			}).then(function(data, err) {
-				console.log('summary.js:', data);
 				$scope.credits = data;
 			})
 		}
@@ -36,18 +42,28 @@ angular.module('pocketacct.summary', [])
 		$scope.addCredit = function() {
 			Summary.addCredit(
 				{username: $window.localStorage.getItem('pocketacct.username')}, 
-				$scope.creditAmmount)
+				$scope.creditAmmount).then(initVals())
 		}
 
 		$scope.addDebit = function() {
 			Summary.addDebit(
 				{username: $window.localStorage.getItem('pocketacct.username')}, 
-				$scope.debitAmmount)
+				$scope.debitAmmount).then(initVals)
 		}
 
 		$scope.logout = function() {
 			Users.logout()
 			$location.path('/login');
 		};
+
+		$scope.viewCreds = function() {
+			$location.path('/allCredits');
+		}
+
+		$scope.viewDebs = function() {
+			$location.path('/allDebits');
+		}
+
+		initVals();
 		$scope.isAuth = Users.isAuth();
 	})

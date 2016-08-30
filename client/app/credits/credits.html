@@ -1,0 +1,36 @@
+<div ng-controller="CreditController">
+	<table>
+		<tr ng-repeat="cred in allCredits">
+			<td>
+				title{{ cred.title }}
+			</td>
+			<td>
+				${{ cred.ammount }}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Total Incoming Payments:
+			</td>
+			<td>
+				${{ totalCreds }}
+			</td> 
+		</tr>
+	</table>
+	<br>
+	<div class="addCredits">
+		<form>
+			Payment Type: <input type="text" ng-model="creditAmmount">
+			<br>
+			<br>
+			Payment Ammount: <input type="text" ng-model="creditTitle">
+			<button type="submit" ng-click="addCredit()">
+				Add Credit
+			</button>
+		</form>
+		<button ng-click="getCredits()">
+			Get Credits
+		</button>
+	</div>
+
+</div>
