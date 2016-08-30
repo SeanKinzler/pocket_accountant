@@ -6,6 +6,15 @@ angular.module('pocketacct.summary', [])
 		$scope.totalCredits = '$0';
 		$scope.balance = '$0';
 		
+		$scope.getCredits = function () {
+			Summary.getCredits({
+				username: $window.localStorage.getItem('pocketacct.username')
+			}).then(function(data, err) {
+				console.log('credits:', data);
+				$scope.credits = data.data.credits;
+			})
+		}
+
 		// var allCredits = Summary.getCredits(
 		// 	{username: $window.localStorage.getItem('pocketacct.username')}
 		// 	);

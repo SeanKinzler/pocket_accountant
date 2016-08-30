@@ -39,9 +39,11 @@ module.exports = {
 	},
 
 	getCredits: function(req, res, next) {
+
 		var user = User.find({
 			username: req.body.username
-		}).exec().then(function(data, err) {
+		}).populate('credits').exec().then(function(data, err) {
+			console.log(data);
 			res.json(data[0]);
 		})
 	},
@@ -54,7 +56,7 @@ module.exports = {
 			Credit.create({
 				ammount: req.body.ammount,
 				_owner: data[0]._id
-			}).then(function(data, err){
+			}).then(function(data, err) {
 				res.sendStatus(201);
 			})
 		})
