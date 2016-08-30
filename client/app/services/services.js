@@ -42,13 +42,19 @@ angular.module('pocketacct.services', [])
 				method: 'POST',
 				url: 'api/getcredits',
 				data: user
+			}).then(function(data, err) {
+				return data.data
 			})
 		}
 
-		var getDebits = function() {
+		var getDebits = function(user) {
 			return $http({
-				method: 'GET',
-				url: 'api/debits'
+				method: 'POST',
+				url: 'api/getdebits',
+				data: user
+			}).then(function(data, err) {
+				console.log('factory: ', data.data)
+				return data.data
 			})
 		}
 
@@ -58,29 +64,47 @@ angular.module('pocketacct.services', [])
 				url: 'api/addcredit',
 				data: {username: user.username, ammount: ammount}
 			}).then(function(data, err) {
-				console.log(data)
+			})
+		}
+
+		var addDebit = function(user, ammount) {
+			return $http({
+				method: 'POST',
+				url: 'api/adddebit',
+				data: {username: user.username, ammount: ammount}
+			}).then(function(data, err) {
+			})
+		}
+
+		var totalCredits = function(user) {
+			return getCredits(user).then(function(data, err) {
+				var toRet = 0;
+				for (var i = 0; i < data.length; i++) {
+					toRet += data[i].ammount;
+				}
+				return toRet;
+			})
+		}
+
+		var totalDebits = function(user) {
+			return getDebits(user).then(function(data, err) {
+				var toRet = 0;
+				for (var i = 0; i < data.length; i++) {
+					toRet += data[i].ammount;
+				}
+				return toRet;
 			})
 		}
 
 		return {
 				// balance: balance,
-				// totalCredits: totalCredits,
-				// totalDebits: totalDebits,
+				totalCredits: totalCredits,
+				totalDebits: totalDebits,
 				getCredits: getCredits,
 				getDebits: getDebits,
-				addCredit: addCredit
+				addCredit: addCredit,
+				addDebit
 			}
-
-		// return getCredits().then(getDebits).then(function(err, data) {
-
-			// return {
-			// 	balance: balance,
-			// 	totalCredits: totalCredits,
-			// 	totalDebits: totalDebits,
-			// 	getCredits: getCredits,
-			// 	getDebits: getDebits
-			// }
-		// })
 	})
 
   //taken from sprint as a quick fix for login feature

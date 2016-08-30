@@ -7,5 +7,9 @@ module.exports = function(app, express) {
 
 	app.post('/api/getcredits', controller.getCredits);
 
-	app.post('/api/addcredit', controller.addCredit)
+	app.post('/api/getdebits', controller.getDebits);
+
+	app.post('/api/addcredit', controller.addCredit);
+
+	app.post('/api/adddebit', controller.addDebit);
 };

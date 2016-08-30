@@ -3,8 +3,6 @@
 //func get current user data
 //
 var User = require('./userModel.js');
-var Credit = require('./../payments/creditModel.js')
-var Dedit = require('./../payments/debitModel.js')
 module.exports = {
 	login: function(req, res, next) {
 		console.log('req: ', req.body.username);
@@ -39,26 +37,37 @@ module.exports = {
 	},
 
 	getCredits: function(req, res, next) {
-
 		var user = User.find({
 			username: req.body.username
-		}).populate('credits').exec().then(function(data, err) {
-			console.log(data);
-			res.json(data[0]);
+		}).exec().then(function(data, err) {
+			res.json(data[0].credits);
+		})
+	},
+
+	getDebits: function(req, res, next) {
+		var user = User.find({
+			username: req.body.username
+		}).exec().then(function(data, err) {
+			console.log('userController: ', data[0].debits)
+			res.json(data[0].debits);
 		})
 	},
 
 	addCredit: function(req, res, next) {
-		var user = User.find({
-			username: req.body.username
-		}).exec().then(function(data, err) {
-			console.log(data)
-			Credit.create({
-				ammount: req.body.ammount,
-				_owner: data[0]._id
-			}).then(function(data, err) {
-				res.sendStatus(201);
-			})
+		var user = User.findOneAndUpdate({username: req.body.username}, 
+			{$push: {credits: {ammount: req.body.ammount}}}, 
+			{safe: true, upsert: true, new: true})
+		.exec().then(function(data, err) {
+			res.sendStatus(201);
+		})
+	},
+
+	addDebit: function(req, res, next) {
+		var user = User.findOneAndUpdate({username: req.body.username}, 
+			{$push: {debits: {ammount: req.body.ammount}}}, 
+			{safe: true, upsert: true, new: true})
+		.exec().then(function(data, err) {
+			res.sendStatus(201);
 		})
 	}
 }
