@@ -46,13 +46,14 @@ angular.module('pocketacct.services', [])
 		}
 
 		var getDebits = function() {
-			turn $http({
+			return $http({
 				method: 'GET',
 				url: 'api/debits'
 			})
 		}
 
 		var addCredit = function(user, ammount) {
+			console.log()
 			return $http({
 				method: 'POST',
 				url: 'api/addcredit',
@@ -62,16 +63,25 @@ angular.module('pocketacct.services', [])
 			})
 		}
 
-		return getCredits().then(getDebits).then(function(err, data) {
-
-			return {
-				balance: balance,
-				totalCredits: totalCredits,
-				totalDebits: totalDebits,
+		return {
+				// balance: balance,
+				// totalCredits: totalCredits,
+				// totalDebits: totalDebits,
 				getCredits: getCredits,
-				getDebits: getDebits
+				getDebits: getDebits,
+				addCredit: addCredit
 			}
-		})
+
+		// return getCredits().then(getDebits).then(function(err, data) {
+
+			// return {
+			// 	balance: balance,
+			// 	totalCredits: totalCredits,
+			// 	totalDebits: totalDebits,
+			// 	getCredits: getCredits,
+			// 	getDebits: getDebits
+			// }
+		// })
 	})
 
   //taken from sprint as a quick fix for login feature

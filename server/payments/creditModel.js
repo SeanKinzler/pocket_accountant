@@ -5,7 +5,6 @@ var creditSchema = new Schema({
 	ammount: Number,
 	_owner: {type: Number, ref: 'user'}
 })
-
-var Credit = mongoose.Model('credit', creditSchema);
+var Credit = mongoose.model('credit', creditSchema);
 
 module.exports = Credit;

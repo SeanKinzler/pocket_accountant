@@ -50,10 +50,11 @@ module.exports = {
 		var user = User.find({
 			username: req.body.username
 		}).exec().then(function(data, err) {
+			console.log(data)
 			Credit.create({
 				ammount: req.body.ammount,
-				_owner: user._id
-			}).save().then(function(data, err){
+				_owner: data[0]._id
+			}).then(function(data, err){
 				res.sendStatus(201);
 			})
 		})

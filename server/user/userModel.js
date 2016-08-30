@@ -6,7 +6,7 @@ var userSchema = new Schema({
 	password: {type: String, required: true},
 	// acctBalance: Number,
 	credits: [{type: mongoose.Schema.Types.ObjectId, ref: 'credit'}],
-	debits: [{type: mongoose.Schema.Types.ObjectId, ref: 'debit'}]
+	// debits: [{type: mongoose.Schema.Types.ObjectId, ref: 'debit'}]
 })
 
 // userSchema.methods.updateBalance = function() {
