@@ -1,0 +1,52 @@
+<div ng-controller="CreditController">
+	<nav>
+		<span ng-click=viewCreds()>
+			View Incoming Payments
+		</span>
+		 | 
+		<span ng-click=viewDebs()>
+			View Outgoing Payments
+		</span>
+		 | 
+		<span ng-click=viewSummary()>
+			View Account Summary
+		</span>
+		|
+		<span class=logout ng-click=logout()>
+			Logout
+		</span>
+
+	</nav>
+	<br>
+	<table>
+		<tr ng-repeat="debit in allDebits">
+			<td>
+				{{ debit.title }}
+			</td>
+			<td>
+				${{ debit.ammount }}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Total Outgoing Payments:
+			</td>
+			<td>
+				${{ totalDebits }}
+			</td> 
+		</tr>
+	</table>
+	<br>
+	<div class="addDebit">
+		<form>
+			Payment Type: <input type="text" ng-model="debitTitle">
+			<br>
+			<br>
+			Payment Ammount: <input type="text" ng-model="debitAmmount">
+			<button type="submit" ng-click="addDebit()">
+				Add Payment
+			</button>
+		</form>
+	</div>
+	
+</div>
